@@ -1,11 +1,14 @@
 import { SlotAdapter } from '../src/services/slot-adapter';
 import { logger } from '../src/utils/logger';
+import { DentrixDriver } from '../src/drivers/dentrix.driver';
+import { SoftDentDriver } from '../src/drivers/softdent.driver';
 
 describe('SlotAdapter', () => {
   let adapter: SlotAdapter;
 
   beforeEach(() => {
-    adapter = new SlotAdapter('TEST_PRACTICE');
+    // Inject drivers explicitly for testing
+    adapter = new SlotAdapter([new DentrixDriver(), new SoftDentDriver()], 'TEST_PRACTICE');
   });
 
   describe('Dentrix format : PascalCase', () => {

@@ -7,9 +7,13 @@
 import { Router, Request, Response } from 'express';
 import { SlotAdapter } from '../services/slot-adapter';
 import { ApiResponse, LegacySlot } from '../types/slot.types';
+import { DentrixDriver } from '../drivers/dentrix.driver';
+import { SoftDentDriver } from '../drivers/softdent.driver';
 
 const router = Router();
-const adapter = new SlotAdapter();
+
+// Dependency injection: explicitly provide drivers
+const adapter = new SlotAdapter([new DentrixDriver(), new SoftDentDriver()]);
 
 const LEGACY_API_URL = 'http://localhost:3000/mock-external-api';
 

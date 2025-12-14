@@ -13,16 +13,18 @@ import { logger } from '../utils/logger';
 // Temporarily hardcoded for demo - in real world scenario, this would come from DB call
 const DEFAULT_PRACTICE_ID = '12345';
 
+// Default drivers - used when no drivers are injected
+const DEFAULT_DRIVERS: PmsDriver[] = [new DentrixDriver(), new SoftDentDriver()];
+
 export class SlotAdapter {
   private practiceId: string;
   private drivers: PmsDriver[] = [];
 
-  constructor(practiceId: string = DEFAULT_PRACTICE_ID) {
+  constructor(drivers: PmsDriver[] = DEFAULT_DRIVERS, practiceId: string = DEFAULT_PRACTICE_ID) {
     this.practiceId = practiceId;
 
-    // Register default drivers
-    this.registerDriver(new DentrixDriver());
-    this.registerDriver(new SoftDentDriver());
+    // Register injected drivers
+    drivers.forEach(driver => this.registerDriver(driver));
   }
 
   // Register a new PMS driver - no need to modify this class for new additions
