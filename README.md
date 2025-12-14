@@ -13,19 +13,26 @@ A lightweight service that normalizes appointment slot data from various Practic
 **Layer B** (`/api`): The clean, normalized API your application consumes.
 
 ## Project Structure
-- index.ts                 # Express app setup, routes mounting
-- drivers/                 # PMS specific transformation logic
-       - index.ts             # Driver exports
-       - dentrix.driver.ts    # Handles Dentrix format
-       - softdent.driver.ts   # Handles SoftDent format
-- services/slot-adapter.ts      # Core adapter with driver registry
-- routes/
-      - slots.routes.ts      # /api/available-slots endpoint
-      - mock-external.routes.ts  # Simulated legacy API
-- types/slot.types.ts        # TypeScript interfaces, PmsDriver contract
+- **index.ts**                 # Express app setup, routes mounting
+
+- **drivers/**                 # PMS specific transformation logic
+- index.ts             # Driver exports
+- dentrix.driver.ts    # Handles Dentrix format
+- softdent.driver.ts   # Handles SoftDent format
+
+- **services**/
+- slot-adapter.ts      # Core adapter with driver registry
+
+- **routes/**
+- slots.routes.ts      # /api/available-slots endpoint
+- mock-external.routes.ts  # Simulated legacy API
+
+- **types/**
+- slot.types.ts        # TypeScript interfaces, PmsDriver contract
 - data/providers.ts         # Mock provider data
-- utils/                    # Utility functions
-- test/                     # Unit test coverage
+
+- **utils/**                    # Utility functions
+- **test/**                     # Unit test coverage
 
 ## Setup
 - To install packages - npm i
